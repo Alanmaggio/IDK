@@ -1,0 +1,959 @@
+<DOCTYPE html>
+    <html lang="ja">
+        <head>
+            <meta charset="UTF-8">
+            <title>POU Server</title>
+            <link rel="stylesheet" type="text/css" href="main.css?20170927">
+            <meta http-equiv="Pragma" content="no-cache">
+            <meta http-equiv="Cache-Control" content="no-cache">
+            <meta http-equiv="Expires" content="0">
+            <meta name="viewport" content="width=680px, initial-scale=0.8, maximum-scale=1.0">
+            <meta name="theme-color" content="#260A0A">
+            <script type="text/javascript" src="main.js?20170840"></script>
+            <script type="text/javascript" src="md5.js"></script>
+            <script src="https://brainblocks.io/brainblocks.min.js"></script>
+        </head>
+        <body>
+            <div class="background"></div>
+            <div class="menubottombg"></div>
+            <div class="menubottom">
+                <div class="menu1" id="Date-Face"></div>
+                <div class="nobr" style="vertical-align:top; width:12%;">
+                    <span class="contents_menu">Stats</span><br>
+                    <input type="button" id="menubutton10" value="v1.17" onclick="load('main','post','ver','null');" style="font-size:11px;">
+                </div>
+                <div class="nobr" style="vertical-align:top; width:86%; text-align:left;">
+                    <div id="menu_login" style="opacity: 1;"><a href="https://www.hw2.click/cure_motd/index.php">Please move to HTTPS site for login &gt;&gt;</a></div>
+                </div>
+            </div>
+        
+            <div class="content">
+                <div class="main">
+                    <div class="titlebg">
+                        <div class="title"><img src="img/pouserver_logo2.png"><br></div>
+                    </div>
+                    <div id="main" style="opacity: 1;"><div class="contents1" style="text-align:center;">
+            <div class="motdurl">MOTD URL: http://www.hw2.click/cure_motd/</div><br>
+            <span class="contents_menu">
+                <span style="font-size:20px;">Jump to <a href="javascript:void(0)" onclick="document.body.scrollTop=document.documentElement.scrollTop=document.getElementById('command').offsetTop">Command</a> / 
+                <a href="javascript:void(0)" onclick="document.body.scrollTop=document.documentElement.scrollTop=document.getElementById('cm').offsetTop">Character</a> List</span>
+            </span><br><br>
+            <span id="Date-UTC" class="notranslate"><div class="nobr" style="width:180px;text-align:left;"><span class="contents_menu">POU Server-Clock:</span></div><div class="nobr" style="width:340px;text-align:left;">Mon, 04 Jan 2021 11:04:30 GMT<br></div></span><br>
+            <span id="Date-Local" class="notranslate"><div class="nobr" style="width:180px;text-align:left;"><span class="contents_menu">Your Local-Clock:</span></div><div class="nobr" style="width:340px;text-align:left;">Mon Jan 04 2021 08:04:30 GMT-0300 (hora estándar de Argentina)<br></div></span><br>
+            <br>
+            <div class="eventlist"><b>Halloween Event!</b> - Get +1 XP when killing zombies.<br><br>Now - 2018/10/31 (GMT)</div>
+            <div class=nobr style=width:180px;text-align:left;vertical-align:top;>
+                <span class=contents_menu>1 FujiCoin (FJC) Price</span><br>
+                <div class=nobr style='width:175px; text-align:center'><a href=http://www.fujicoin.org/ target=_blank><img src=img/fjc/newlogo-64x64.png></a></div>
+            </div>
+            <div class=nobr style=width:340px;text-align:left;>
+                <span style="font-size:9px;">(<a href="https://coinmarketcap.com/currencies/fujicoin/" target="_blank">Powered by CoinMarketCap</a>)</span><br>
+                USD: $<span id="fuji_price_usd"></span><br>
+                BTC: <span id="fuji_price_btc"></span><br>
+                <span style="font-size:9px;">1 PT in game = 0.4 FJC<br>If you trade, need create account !webc command.</span>
+            </div><br><br>
+        </div>
+        <div class="svrlist_table">
+            <div class="svrlist"><div class="svrname1"><img src="img/icon_hv-custsvr.png" width="15" height="15"> <a href="steam://connect/C-JP1.hw2.click:27015">C-JP1.hw2.click</a><br>Modded</div><span id="c-jp1" class="notranslate">c-jp1.hw2.click:27015<br>cbe_apocalyptic_city_v4a<br>Players: 0/5<br><br></span></div>
+            <div class="svrlist"><div class="svrname1"><img src="img/icon_no-dlsvr.png" width="15" height="15"> <a href="steam://connect/C-JP2.hw2.click:27016">C-JP2.hw2.click</a><br>No-Download</div><span id="c-jp2" class="notranslate">c-jp2.hw2.click:27016<br>cbe_cityblock_legacy_20170305_h<br>Players: 2/6<br><br>LV33)Dana Boy<br>LV13)eiktusau<br></span></div>
+            <div class="svrlist"><div class="svrname2"><img src="img/icon_hv-custsvr.png" width="15" height="15"> <a href="steam://connect/C-US1.hw2.click:27015">C-US1.hw2.click</a><br>Modded</div><span id="c-us1" class="notranslate">c-us1.hw2.click:27015<br>cbe_sludge_v0<br>Players: 0/5<br><br></span></div>
+            <div class="svrlist"><div class="svrname3"><img src="img/icon_no-dlsvr.png" width="15" height="15"> <a href="steam://connect/C-EU1.hw2.click:27015">C-EU1.hw2.click</a><br>Modded</div><span id="c-eu1" class="notranslate">c-eu1.hw2.click:27015<br>cbe_trainstation_legacy_2017030<br>Players: 0/5<br><br></span></div> 
+            <div class="svrlist"><div class="svrname2"><img src="img/icon_hv-custsvr.png" width="15" height="15"> <a href="steam://connect/C-US2.hw2.click:27016">C-US2.hw2.click</a><br>Farming-Station<br><b>* Need LV100-</b></div><span id="c-us2" class="notranslate">c-us2.hw2.click:27016<br>cbe_hw2_zombie-festa_v5a<br>Players: 0/5<br><br></span></div>
+            <div class="svrlist"><div class="svrname2"><img src="img/icon_hv-custsvr.png" width="15" height="15"> <a href="steam://connect/C-US3.hw2.click:27015">C-US3.hw2.click</a><br>Modded-Festa<br><b>* Need Reserve</b></div><span id="c-us3" class="notranslate"></span></div>
+            <div class="svrlist"><div class="svrname2"><img src="img/icon_hv-custsvr.png" width="15" height="15"> <a href="steam://connect/C-US4.hw2.click:27016">C-US4.hw2.click</a><br>Modded-Festa<br><b>* Need LV500-</b></div><span id="c-us4" class="notranslate"></span></div>
+            <div class="svrlist"><div class="svrname5"><img src="img/icon_hv-custsvr.png" width="15" height="15"> <a href="steam://connect/C-AU1.hw2.click:27015">C-AU1.hw2.click</a></div><span id="c-au1" class="notranslate"><br><img src="img/ajax-loader.gif"><br></span></div>
+            <div class="svrlist"><div class="svrname5"><img src="img/icon_no-dlsvr.png" width="15" height="15"> <a href="steam://connect/C-AU2.hw2.click:27016">C-AU2.hw2.click</a></div><span id="c-au2" class="notranslate"><br><img src="img/ajax-loader.gif"><br></span></div>
+        </div><br>
+        <div class="center">
+                <div><div id="ranking" style="opacity: 1;"><div style="display: inline-block;_display: inline; margin-left: 15px; font-size: 20px; border-bottom: solid 1px #333333; width: 570px;">Ranking Top-5</div><br><div style="display: inline-block;_display: inline; margin-left: 15px; font-size: 10px; border-bottom: solid 1px #333333; width: 570px; text-align:left;"><div class="nobr" style="margin-left: 15px;"></div><div style="display: inline-block;_display: inline; width: 28px;"><img src="./img/cm/icon_tmnt_leo.png" width="28"><br></div><div style="margin-left: 5px;font-size: 10px; display: inline-block;_display: inline; width: 100px;">RANK:1 - LV:3468</div><div style="font-size: 10px; display: inline-block;_display: inline; width: 230px; word-wrap: break-word;"><b>ALAN  &lt;leader/&gt;</b></div><div style="font-size: 10px; display: inline-block;_display: inline;">Killed Zombies:7827136466<br>XP:131460/175988 (Total:110124498)</div></div><br><div style="display: inline-block;_display: inline; margin-left: 15px; font-size: 10px; border-bottom: solid 1px #333333; width: 570px; text-align:left;"><div class="nobr" style="margin-left: 15px;"></div><div style="display: inline-block;_display: inline; width: 28px;"><img src="./index.php?mode=get&amp;action=setimg&amp;no=1070&amp;rand=1609755191" width="28"></div><div style="margin-left: 5px;font-size: 10px; display: inline-block;_display: inline; width: 100px;">RANK:2 - LV:1670</div><div style="font-size: 10px; display: inline-block;_display: inline; width: 230px; word-wrap: break-word;"><b>NixaStorm</b> <a href="https://steamcommunity.com/id/LG642018Slytherin58_Crystal/" target="_blank">&lt;&lt;WebSite&gt;&gt;</a></div><div style="font-size: 10px; display: inline-block;_display: inline;">Killed Zombies:2302805<br>XP:19498/138797 (Total:77071034)</div></div><br><div style="display: inline-block;_display: inline; margin-left: 15px; font-size: 10px; border-bottom: solid 1px #333333; width: 570px; text-align:left;"><div class="nobr" style="margin-left: 15px;"></div><div style="display: inline-block;_display: inline; width: 28px;"><img src="./img/cm/icon_tmnt_leo.png" width="28"><br></div><div style="margin-left: 5px;font-size: 10px; display: inline-block;_display: inline; width: 100px;">RANK:3 - LV:1665</div><div style="font-size: 10px; display: inline-block;_display: inline; width: 230px; word-wrap: break-word;"><b>Slytherin58</b></div><div style="font-size: 10px; display: inline-block;_display: inline;">Killed Zombies:6862404<br>XP:6035/137966 (Total:76348443)</div></div><br><div style="display: inline-block;_display: inline; margin-left: 15px; font-size: 10px; border-bottom: solid 1px #333333; width: 570px; text-align:left;"><div class="nobr" style="margin-left: 15px;"></div><div style="display: inline-block;_display: inline; width: 28px;"><img src="./index.php?mode=get&amp;action=setimg&amp;no=909&amp;rand=1609755191" width="28"></div><div style="margin-left: 5px;font-size: 10px; display: inline-block;_display: inline; width: 100px;">RANK:4 - LV:1385</div><div style="font-size: 10px; display: inline-block;_display: inline; width: 230px; word-wrap: break-word;"><b>Endless Night</b> <a href="https://www.youtube.com/channel/UCDIUsKQ1nspwp5peY3xLd-A" target="_blank">&lt;&lt;WebSite&gt;&gt;</a></div><div style="font-size: 10px; display: inline-block;_display: inline;">Killed Zombies:3265887<br>XP:35764/95378 (Total:43949766)</div></div><br><div style="display: inline-block;_display: inline; margin-left: 15px; font-size: 10px; border-bottom: solid 1px #333333; width: 570px; text-align:left;"><div class="nobr" style="margin-left: 15px;"></div><div style="display: inline-block;_display: inline; width: 28px;"><img src="./img/cm/icon_tmnt_leo.png" width="28"><br></div><div style="margin-left: 5px;font-size: 10px; display: inline-block;_display: inline; width: 100px;">RANK:5 - LV:1372</div><div style="font-size: 10px; display: inline-block;_display: inline; width: 230px; word-wrap: break-word;"><b>EssentukiTLT</b></div><div style="font-size: 10px; display: inline-block;_display: inline;">Killed Zombies:8194873<br>XP:75621/93591 (Total:42725805)</div></div><br></div>
+        </div><br>
+        <div class="contents1">
+            <ul>
+                <li>Event time is GMT Clock. Equip Item there are over 66 kinds.</li>
+                <li>This server not permitted an annoying glitch, blocking, racism. If you see, please send to e-mail at bottom of the page.</li>
+                <br>
+                <li><div class="subj1">Announce</div></li>
+                <ul>
+                    <li>2020/07/25 - <span style="color:#FFFF00;">Changed: !nof method (Only burn the near zombies, but can earn burn XP).</span></li>
+                    <li>2019/10/12 - <span style="color:#FFFF00;">Changed: Automated event system. zombie-festa map is coming by 5% chance (15% if event period).</span></li>
+                    <li>2019/09/08 - <span style="color:#FF6600;">Added: Web XP transfer system.</span> <span style="color:#FFFF00;">Changed: XP calculating when level up in game.</span> You can transfer xp to another account from Login -&gt; Settings page.</li>
+                </ul>
+            </ul>
+            <ul>
+                <li><div class="subj1">Event list</div>
+                    <div class="nobr">
+                            <ul>
+                                <li>All event period: zombie-festa map is coming by 15% chance. (usualy 5%)</li>
+                                <li>Every years, 07/01 - 08/31 : Summer event. limited item drop chance, You get to +1 XP bonus when killing zombies.</li>
+                                <li>Every years, 10/01 - 10/31 : Halloween event. limited item drop chance, You get to +1 XP bonus when killing zombies.</li>
+                                <li>Every years, 11/01 - 12/20 : Xmas event. +2 XP bonus, limited item drop chance, christmas wave.</li>
+                                <li>Every years, 12/25 - 12/31 : Before new year event. Get XP x3.</li>
+                            </ul>
+                </div></li>
+            </ul>
+        </div>
+        <div class="contents1">
+        <ul>
+            <li><div class="subj1">Server information</div>
+                <div class="nobr" style="vertical-align:top; width:30%">
+                        <img src="img/icon_hv-custsvr.png" width="20" height="20"> Modded Server<br>
+                        <img src="img/hv-custsvr01.png" width="100%"><br>
+                        <ul>
+                            <li>XP multipiler: x1.0</li>
+                            <li>All enable command, skin, maps</li>
+                            <li>Farming-Station is locked the enable Nightmare Mode</li>
+                            <li>Modded-Festa is enabled farming map</li>
+                        </ul>
+                </div>
+                <div class="nobr" style="vertical-align:top; width:30%">
+                        <img src="img/icon_no-dlsvr.png" width="20" height="20"> No-Download Server<br>
+                        <img src="img/no-dlsvr01.png" width="100%">
+                        <ul>
+                            <li>XP multipiler: x2.0</li>
+                            <li>Some command restricted: <span class="notranslate">!sbs, !rrs, !indig, !dn, !invi. !mu</span> not gain per 30 level</li>
+                            <li>Only lighter cbe maps.</li>
+                        </ul>
+                </div>
+                <div class="nobr" style="vertical-align:top; width:30%">
+                        <img src="img/icon_abg.png" width="20" height="20"> AnonymousBattleGrounds Server<br>
+                        <img src="img/abg_server.png" width="100%">
+                        <ul>
+                            <li>XP multipiler: x2.0, Player HP, AR, Fire-rate: 1/3.</li>
+                            <li>No-Download Server base</li>
+                            <li>Can use skill !rg only. Item status affect.</li>
+                        </ul>
+                </div>
+                <br><br>
+            </li>
+            <div id="command"></div>
+            <li><div class="subj1">Command List</div>
+                <ul>
+                    <li>You can use command in game chat. Chat default key bind: Y key</li>
+                    <li><img src="img/icon_hv-custsvr.png" width="15" height="15"> ... Can use Modded Server</li>
+                    <li><img src="img/icon_no-dlsvr.png" width="15" height="15"> ... Can use No-Download Server</li>
+                    <li><img src="img/icon_abg.png" width="15" height="15"> ... Can use AnonymousBattleGrounds Server</li>
+                    <li><span style="color:#00FFFF;">Bind is useful each command.</span> Enable developer console, push ~key, type in: <span class="notranslate"><u>bind z "say !heal"</u> .</span>
+                    After setting, you can heal by just pressing the Z key.<br>
+                    For more information: https://developer.valvesoftware.com/wiki/Bind<br></li>
+                </ul><br>
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><img src="img/icon_abg.png" width="15" height="15"><br>!class [Name]</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Common</div>
+                    <div class="commlist-subt">Effect</div>
+                        <div class="commlist-c">You can choose class.<br><br>
+                        <span class="notranslate">[Name] = none, pnt, spt, aslt, tech, sni</span><br><br>
+                        <span style="color:#FF9999;">Auto-respawn from start of round up to 60sec.</span></div><br>
+                </div>
+        
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><img src="img/icon_abg.png" width="15" height="15"><br>!xp</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Common</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Show your LV, XP, Points, Zombie killed count.</div><br>
+                </div>
+        
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><img src="img/icon_abg.png" width="15" height="15"><br>!rank</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Common</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Show LV ranking (Display to all players on the server).</div><br>
+                </div>
+        
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><img src="img/icon_abg.png" width="15" height="15"><br>!cm</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Common</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Change your player model.<br>(No-DL and AnonymousBattleGrounds is not change model, only affect status)<br><br><a href="javascript:void(0)" onclick="document.body.scrollTop=document.documentElement.scrollTop=document.getElementById('cm').offsetTop">Character List</a></div><br>
+                </div>
+        
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><img src="img/icon_abg.png" width="15" height="15"><br>!suicide</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Common</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">You can suicide.</div><br>
+                </div>
+        
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><img src="img/icon_abg.png" width="15" height="15"><br>!tp</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Common</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Switch thirdperson/firstperson view.</div><br>
+                </div>
+        
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!player</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Common</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Show player list. <u>You can check PlayerID.</u></div><br>
+                </div>
+        
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><img src="img/icon_abg.png" width="15" height="15"><br>!conf (1) (2)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Common</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Change your config. <br>Ex: !conf lang cn<br>
+                    (1) lang (2) en/jp/cn/kr/th/ru<br>
+                    (1) music (2) on/off<br>
+                    (1) lens (2) on/off<br>
+                    <a href="img/conf_lens-before.jpg" target="_blank"><img src="img/conf_lens-before.jpg" width="30%"></a> -&gt; <a href="img/conf_lens-after.jpg" target="_blank"><img src="img/conf_lens-after.jpg" width="30%"></a><br>
+                    (1) hidelv (2) on/off<br><br>
+                    </div><br>
+                </div>
+        
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><img src="img/icon_abg.png" width="15" height="15"><br>!webc (WebID)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Common</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">You can create Web Login Account.<br>If you already created, can renew.</div><br>
+                </div>
+        
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15">!nightmare</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Common</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">You can change Nightmare mode. Farming Station is locked the enable Nightmare Mode.<br>Player HP &amp; AR is 1/2, slow down moving speed.<br>+2 XP when killing zombies.</div><br>
+                </div>
+        
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15">!hell</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Common</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">You can change Hell mode. <span style="color:#FF0000;">Cannot use Farming Station.</span><br>Player HP &amp; AR is 1/4, slow down moving speed.<br>+4 XP when killing zombies.</div><br>
+                </div>
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15">!moff</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Common (csv Map)</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Disable wave music.</div><br>
+                </div>
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15">!mon</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Common (csv Map)</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Enable wave music.</div><br>
+                </div>
+                <br>
+                <div class="commlistbg2">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!heal (!h or !health)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Heal</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Healing health yourself.<br>(UsePoints: 2, amount: (100+LV)/2, Cooldown: 5sec)</div><br>
+                </div>
+                <div class="commlistbg2">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!healer (!hler)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Heal</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Healing health all players and healing all turret.<br>(UsePoints: 3, amount: (100+LV)/3, XP bonus, Cooldown: 5sec)</div><br>
+                </div>
+                <div class="commlistbg2">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!armor (!ar)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Heal</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Healing armor yourself.<br>(UsePoints: 2, amount: (100+LV)/2, Cooldown: 5sec)</div><br>
+                </div>
+                <div class="commlistbg2">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><img src="img/icon_abg.png" width="15" height="15"><br>!respawn (!r)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Heal</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Respawn yourself. (UsePoints: 10)<br><span style="color:#FF0000;">Cannot use when cooldown time.</span><br>
+                    <span style="color:#FFFFFF;">Not need 10 points from start of round up to 60sec.</span></div><br>
+                </div>
+                <div class="commlistbg2">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!revive (!rv)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Heal</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Revive all players. (UsePoints: 12, XP bonus)<br><span style="color:#FF0000;">You can use even in restrict wave!</span><br>「死の、先を逝く者たちよ!<br>　我と共に生きるは冷厳なる勇者、いでよ!!」</div><br>
+                </div>
+                <div class="commlistbg2">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><img src="img/icon_abg.png" width="15" height="15"><br>!ammo</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Heal</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Full charge ammunition yourself. <br>(UsePoints: 3, Cooldown: None)<br><span style="color:#FF0000;">If your granade is empty then cannot heal up granade ammo.</span></div><br>
+                </div>
+                <div class="commlistbg2">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!multiple (!mu)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Heal</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Can additional deploy turret or support box. <br>(UsePT: 2, Cooldown: None, Amount: increases by 1 every Support:25LV/Tech:30LV) <span style="color:#FF0000;">Old turret and box will disappear.</span> 
+                    <span style="color:#FFFFFF;">Only hw2_zombie-festa: Can deploy turrets &amp; trap to map. Get XP all players with 50% chance.</span><br><a href="img/update_20180422.png"><img src="img/update_20180422.png" width="20%"></a></div><br>
+                </div>
+                <br>
+                <div class="commlistbg3">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><img src="img/icon_abg.png" width="15" height="15"><br>!reduceguard (!rg)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Skill</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Now spawn zombied health will change to 1. <br>(UsePoints: 2, Cooldown: 20sec (CSV map: 60sec))</div><br>
+                </div>
+                <div class="commlistbg3">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><br>!invincible (!invi)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Skill</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">You can invincible about 20sec. <br>(UsePoints: 4, Cooldown: 15sec)</div><br>
+                </div>
+                <div class="commlistbg3">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><br>!nightoffire (!nof)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Skill</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Burn zombies.<br>(UsePoints: 2, Cooldown: 4sec)<br>Cannot use Bloody-Speedy wave.</div><br>
+                </div>
+                <div class="commlistbg3">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><br>!starburststream (!sbs)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Skill</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Unlimited ammo about 30sec. <br>(UsePoints: 7, Cooldown: 30sec. Extend time: If you above LV600, 13sec)<br>「頼む！10秒だけ持ちこたえてくれ！！」</div><br>
+                </div>
+                <div class="commlistbg3">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><br>!roundripsaber (!rrs)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Skill</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">You can rapid shot. Infinite ammo when using machine gun.<br>(UsePoints: 8, Cooldown: 60sec)<br>Extend time: <span class="notranslate">LV/40</span> (Extend MAX:600LV). voice: <span class="notranslate">!rrs jp / !rrs en</span></div><br>
+                </div>
+                <div class="commlistbg3">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><br>!nv</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Skill</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">You can use Nibelung Valesti. Extreme rapid shot few seconds.<br>(UsePoints: 4, Cooldown: 20sec)<br>Extend time: <span class="notranslate">LV/20</span>. voice: <span class="notranslate">!nv jp / !nv en</span></div><br>
+                </div>
+                <div class="commlistbg3">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><br>!indig (!indig en)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Skill</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Use indignation. You need have Father's pendant. (Cooldown: 20sec)
+                    Not reduce item when use. Cannot be used more than number of item in round. 
+                    <span style="color:#FF0000;">Indig-helper system is available! (Someone using the !indig, you also try to use !indig. 
+                    helper is not need Father's pendant.)</span></div><br>
+                </div>
+                <div class="commlistbg3">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><br>!deathnote (!dn)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Skill</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">You can use Death Note. Zombies will die one by one.<br>(UsePoints: 4, Cooldown: 30sec) voice: <span class="notranslate">!dn jp / !dn en</span><br>
+                    When it exceeds certain number, laugh.</div><br>
+                </div>
+                <div class="commlistbg3">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><br>!os (!augma)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Skill</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">You can start-up Ordinal scale.<br>(UsePoints: 10, Cooldown: 40sec)<br>
+                    Appearance of zombies will change by AR technology. Drop item with chance of 3%.</div><br>
+                </div>
+                <div class="commlistbg3">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><br>!tada</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Skill</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">You can x2 move &amp; shot.<br>(UsePoints: 2, Cooldown: 5sec)<br>
+                    Please use bind. Ex) <u>bind alt "say /tada"</u> Enter this for developer console. And pless Left-Alt key.<br>
+                    「Time alter--- Double accel!!」</div><br>
+                </div>
+                <br>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!inv or !i</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Inventory</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Show your item latest of 6. <u>You can check ItemID.</u></div><br>
+                </div>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!inv [Filter] [Offset]</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Inventory</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c" style="height:90px;">Show your each filter equip item. <br>Ex: !i head 30<br>
+                    Option:<br><span class="notranslate">
+                    [Filter] = all, item, head, body, legs, hand, rare, copper, silver, gold, platinum, auc<br>
+                    [Offset] = </span>You can pointing at item load start position.</div><br>
+                </div>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!inv equip (!i e)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Inventory</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Show your current equip item. </div><br>
+                </div>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!inv showequip (!i se)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Inventory</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Show for everyone your current equip item.</div><br>
+                </div>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!equip (ItemID)<br>!e (ItemID)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Inventory</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c" style="height: 40px">Equip item. (Cannot equip use item)</div><br>
+                </div>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!invsell / !is</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Inventory</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Show your sell item latest of 6.<br>Same filter and offset option as !inv.</div><br>
+                </div>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!sell (ItemID or Type)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Inventory</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Sell item.<br><span class="notranslate">- Type: garbage, copper, silver (Sell 6 items at once)</span><br>
+                    <span class="notranslate">- garbage: Beach Sandal, cloth, leather series</span><br><span class="notranslate">!sell (Type)</span> is not sell strong append of item. 
+                    <span style="color:#FF4444;">Be careful: Permanently item will be erased.</span></div><br>
+                </div>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!buy (BuyID)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Inventory</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Buy item. (Will be rotated by time. <u>BuyID list can show entering this only command in chat: <span class="notranslate">!buy</span></u>)</div><br>
+                </div>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!buycm (Name)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Inventory</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Buy character. (<u>Name list can show entering this only command in chat: <span class="notranslate">!buycm</span></u>)</div><br>
+                </div>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!rf (ItemID)<br>
+                    !reforge (ItemID)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Inventory</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">You can strengthen the equip item. <br>If set item, again type <span class="notranslate"><br>!rf</span>. You can repeat it.<br>
+                    <span style="color:#FF4444;">Be careful: Consume very much points.</span><br>
+                    <img src="img/reforge_goblin_tinkerer.png"><img src="img/window_balloon.png"><div style="display: inline-block; _display: inline; margin-top: 10px; width: 60%; padding: 10px 10px 10px 10px; vertical-align: top; background: #FFFFFF; color: #000000;">
+                    If type <span class="notranslate">"!rf (ItemID)"</span> and <span class="notranslate">"!rf"</span>, you can reforge equip item.<br>
+                    Be careful... Need points per !rf. 
+                    At first recommend to try with cloth.<br>Try not to type repeatedly unnecessarily.
+                    </div><br>--> </div><br>
+                </div>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!p / !potion</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Inventory</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Use Potion. Healing health yourself.<br>(Amount: ALL, Cooldown: None)</div><br>
+                </div>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!fp / !forcepotion</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Inventory</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Use Force Potion. Healing Armor yourself.<br>(Amount: ALL, Cooldown: None)</div><br>
+                </div>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><br>!pos</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Inventory</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Use Pieces of Star. You can use Star Burst Stream.<br>(Cooldown: None)</div><br>
+                </div>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><br>!vp</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Inventory</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Use Valkyrie Pendant. You can use Round Rip Saber.<br>(Cooldown: None)</div><br>
+                </div>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><br>!xpb2</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Inventory</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Use XP Booster x2. Enable per 1 hour. Can be used repeatedly. If you want to buy, <span class="notranslate">"!buy 5005"</span> (Need 200 Points).<br>(Cooldown: None)</div><br>
+                </div>
+                <br>
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!trade</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Trade</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">View trade player list. <u>You can check PlayerID.</u></div><br>
+                </div>
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!tradei (PlayerID) (ItemID)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Trade</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Set item trade. <br><span class="notranslate">Ex: <span class="notranslate">!tradei 2 85927</span></span><br><u>PlayerID list: <span class="notranslate">!trade or !player</span>. ItemID list is <span class="notranslate">!i</span></u>.<br>
+                    <span style="color:#FF0000;">Cannot use item trade yet.</span></div><br>
+                </div>
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!tradep (PlayerID) (Points)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Trade</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Set points trade. <br><span class="notranslate">Ex: !tradep 2 1000</span><br><br></div><br>
+                </div>
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!traden (PlayerID)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Trade</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Set trade not send anything. <br>This command when would to receive only.</div><br>
+                </div>
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!sendi (PlayerID) (ItemID)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Trade</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Set item send. <br><span class="notranslate">Ex: <span class="notranslate">!sendi 2 85927</span><br>Distination Player is automatic accept.</span><br>
+                    <span style="color:#FF0000;">Cannot use item trade yet.</span></div><br>
+                </div>
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!sendp (PlayerID) (Points)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Trade</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Set points send. <br><span class="notranslate">Ex: !sendp 2 1000</span><br>Distination Player is automatic accept.<br></div><br>
+                </div>
+                <div class="commlistbg">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!accept</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Trade</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Accept trade. <br>!tradei / !tradep / !traden required before using this command.<br>
+                    <span style="color:#FF0000;">We not responsible for any trade content.</span></div><br>
+                </div>
+                <br>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!auclist (Category) (Offset)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Auction</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Display auction list. You can check Price and ItemID.<br>
+                        - Category: [head,hand,body,leg,all] This is option.<br>
+                        - Offset: [20,40, ...] This is option. Specification the start display position.<br>
+                    </div><br>
+                </div>
+        
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!aucbuy (ItemID)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Auction</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Buy auction items. <br><span class="notranslate">Ex: <span class="notranslate">!aucbuy 203842</span></span><br>ItemID list: <span class="notranslate">!auclist</span>.</div><br>
+                </div>
+                <div class="commlistbg4">
+                    <div class="commlist-subt">Command</div>
+                    <div class="commlist-t"><span class="notranslate"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"><br>!aucset (ItemID) (Points)</span></div>
+                    <div class="commlist-subt">Category</div><div class="commlist-c">Auction</div>
+                    <div class="commlist-subt">Effect</div>
+                    <div class="commlist-c">Set auction price your own item. Cannot set use items.<br><span class="notranslate">Ex: !aucset 239847 10000</span><br>
+                    <span style="color:#FF0000;">If other people were cheaply listed than you, it will not be displayed.</span></div><br>
+                </div>
+            </li>
+        
+            <li><div class="subj1">SaySound</div>
+                <div class="commlist-t"><img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15">List<br>(Some sounds cannot use in No-Download Server)</div>
+                    <div class="commlist-c"><span class="notranslate">wht, icb, icben, indig, indig en, good, nice, ok, hi, finally, turret, yeah, go, hurry, grenade, getdown,
+                    damn, omg, behind, open, openthegate, overhere, sorry, sry, uh, ah, ahh, wtf, wth, whoops, oh, guh, becareful, careful,
+                    sweet, ns, niceshot, allright, hum, hum2, lookout, look, wo, watchout, gappoi, yes, no, w, ww, lol, lmao, inc, incoming,
+                    inc2, incoming2, gg, medic, rrs, rrs en, sbs, rg, mu, dta, dta2, ahhh, hler, healer, h, heal, ha, takethis, tt, 
+                    ss, ss2, help, atk, cb, ppower, ptime, ptime2, fire, ya, to, mu2, dta3, kira, kira2, kira3, god, god2, aa, aaa, 
+                    yabai, moenai, yaa, zom, zom2, zom3, zom4, letskickshell, lks</span></div><br>
+            </li>
+            <div id="cm"></div>
+            <li style="color:#00FF00;"><div class="subj1">Model change command (!cm) <img src="img/icon_hv-custsvr.png" width="15" height="15"></div>
+                <ul>
+                    <li>If you !buycm Model, you can use even if your LV is not enough.</li>
+                    <li>If LV is enough and buy, affect Buff or increase status.</li>
+                </ul>
+                <div class="cmlist"><img src="img/cm/default.png"><br><span class="notranslate">!cm default</span><br><img src="img/corporal.svg" width="15" height="15"> Default cure models.</div>
+                <div class="cmlist"><img src="img/cm/mc-human.png"><br><span class="notranslate">!cm human<br>!cm steve<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: none.<br><br></div>
+                <div class="cmlist"><img src="img/cm/mc-zombie.png"><br><span class="notranslate">!cm zombie<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 10.<br><br></div>
+                <div class="cmlist"><img src="img/cm/mc-creeper.png"><br><span class="notranslate">!cm creeper<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 20.<br><br></div>
+                <div class="cmlist"><img src="img/cm/mc-enderman.png"><br><span class="notranslate">!cm enderman<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 30.<br><br></div>
+                <div class="cmlist"><img src="img/cm/deviljin.png"><br><span class="notranslate">!cm deviljin</span><br><img src="img/corporal.svg" width="15" height="15"> Require LV: 40.<br><br></div>
+                <div class="cmlist"><img src="img/cm/mc-skeleton.png"><br><span class="notranslate">!cm skeleton<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 50.<br><br></div>
+                <div class="cmlist"><img src="img/cm/mc-pig.png"><br><span class="notranslate">!cm pig<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 60.<br><br></div>
+                <div class="cmlist"><img src="img/cm/bugs.png"><br><span class="notranslate">!cm bugs<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 70.<br><br></div>
+                <div class="cmlist"><img src="img/cm/mc-cow.png"><br><span class="notranslate">!cm cow<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 80.<br><br></div>
+                <div class="cmlist"><img src="img/cm/hw2_sts.png"><br><span class="notranslate">!cm sans<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 90.<br>
+                    <img src="img/money-stack.svg" width="15" height="15"> !buycm: -400 PT<br>
+                    <img src="img/crossed-swords.svg" width="15" height="15"> <b>Damage Canceller</b>: Avoid damage with 20% chance. But if you tired, cannot cancel. (Need buy+LV)<br><br></div>
+                <div class="cmlist"><img src="img/cm/miku.png"><br><span class="notranslate">!cm miku<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 100.<br>
+                    <img src="img/money-stack.svg" width="15" height="15"> !buycm: -700 PT<br>
+                    <img src="img/crossed-swords.svg" width="15" height="15"> <b>Diva of the world</b>: You can heal armor when use !healer. (Need buy+LV)<br><br></div>
+                <div class="cmlist"><img src="img/cm/pap.png"><br><span class="notranslate">!cm pap<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 110.<br>
+                    <img src="img/money-stack.svg" width="15" height="15"> !buycm: -1100 PT<br>
+                    <img src="img/arrow-cursor.svg" width="15" height="15"> Armor +30 (Need buy+LV)<br><br></div>
+                <div class="cmlist"><img src="img/cm/lucario.png"><br><span class="notranslate">!cm lucario<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 130.<br>
+                    <img src="img/money-stack.svg" width="15" height="15"> !buycm: -1600 PT<br>
+                    <img src="img/crossed-swords.svg" width="15" height="15"> <b>Wave-Guiding Hero</b>: Decrease skill cool-down time. (Need buy+LV)<br><br></div>
+                <div class="cmlist"><img src="img/cm/zoey.png" height="180"><br><span class="notranslate">!cm zoey<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 145.</div>
+                <div class="cmlist"><img src="img/cm/ccred.png"><br><span class="notranslate">!cm ccred<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 160.<br>
+                    <img src="img/money-stack.svg" width="15" height="15"> !buycm: -3200 PT<br>
+                    <img src="img/arrow-cursor.svg" width="15" height="15"> HP +60 (Need buy+LV)<br><br></div>
+                <div class="cmlist"><img src="img/cm/marvin.png"><br><span class="notranslate">!cm marvin<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 180.<br>
+                    <img src="img/money-stack.svg" width="15" height="15"> !buycm: -3600 PT<br>
+                    <img src="img/arrow-cursor.svg" width="15" height="15"> HP +80 (Need buy+LV)<br><br><br></div>
+                <div class="cmlist"><img src="img/cm/u-knuckles.png"><br><span class="notranslate">!cm uk<br>!cm uknuckles<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 190.<br>
+                    <img src="img/money-stack.svg" width="15" height="15"> !buycm: -4000 PT<br>
+                    <img src="img/crossed-swords.svg" width="15" height="15"> <b>Clucking</b>: When you are surrounded, deals damage to zombies. (Need buy+LV)<br><br></div>
+                <div class="cmlist"><img src="img/cm/glowing-skeleton.png"><br><span class="notranslate">!cm gs<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 200.<br>
+                    <img src="img/money-stack.svg" width="15" height="15"> !buycm: -5000 PT<br>
+                    <img src="img/crossed-swords.svg" width="15" height="15"> <b>Faint light</b>: +1 XP for all players when killing zombies with 2% chance. (Need buy+LV)<br><br></div>
+                <div class="cmlist"><img src="img/cm/tmnt.png"><br>
+                    <span class="notranslate">!cm don</span><br><img src="img/corporal.svg" width="15" height="15"> Require LV: 25.<br>
+                    <span class="notranslate">!cm raph</span><br><img src="img/corporal.svg" width="15" height="15"> Require LV: 55.<br><br>
+                    <span class="notranslate">!cm mike</span><br><img src="img/corporal.svg" width="15" height="15"> Require LV: 120.<br>
+                    <img src="img/money-stack.svg" width="15" height="15"> !buycm: -1200 PT<br>
+                    <img src="img/crossed-swords.svg" width="15" height="15"> <b>PIZZA POWER!</b>: Increase heal amount and +1 XP per player when !healer. (Need buy+LV)<br><br>
+                    <span class="notranslate">!cm leo</span><br><img src="img/corporal.svg" width="15" height="15"> Require LV: 220.<br>
+                    <img src="img/money-stack.svg" width="15" height="15"> !buycm: -6000 PT<br>
+                    <img src="img/crossed-swords.svg" width="15" height="15"> <b>Man, I love being a turtle!</b>: +1 XP when killing zombies and protect players. (Need buy+LV)<br><br></div>
+                <div class="cmlist"><img src="img/cm/gpap.png"><br><span class="notranslate">!cm gpap<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 225.<br>
+                    <img src="img/money-stack.svg" width="15" height="15"> !buycm: -8000 PT<br>
+                    <img src="img/crossed-swords.svg" width="15" height="15"> <b>Gush money</b>: +1 Points for all players when killing zombies with 1% chance. (Need buy+LV)<br><br></div>
+                <div class="cmlist"><img src="img/cm/fenrir.png" height="180"><br><span class="notranslate">!cm fenrir<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 250.<br>
+                    <img src="img/money-stack.svg" width="15" height="15"> !buycm: -10000 PT<br>
+                    <img src="img/crossed-swords.svg" width="15" height="15"> <b>Wolf Roar</b>: Destroy strong zombie when killing zombies with 1% chance. (Need buy+LV)<br><br></div>
+                <div class="cmlist"><span class="notranslate">!cm mccree<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 300.<br>
+                    <img src="img/money-stack.svg" width="15" height="15"> !buycm: -12000 PT<br>
+                    <img src="img/crossed-swords.svg" width="15" height="15"> <b>It's High Noon</b>: !rg when killing zombies with 1% chance. (Need buy+LV)<br><br>
+                <span class="notranslate">!cm mccree2<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: 350.<br>
+                    <img src="img/money-stack.svg" width="15" height="15"> !buycm: -16000 PT<br>
+                    <img src="img/arrow-cursor.svg" width="15" height="15"> Firerate +0.4 (Need buy+LV)<br>
+                    <img src="img/crossed-swords.svg" width="15" height="15"> <b>It's High Noon</b>: !rg when killing zombies with 1% chance. (Need buy+LV)<br><br></div>
+                <div class="cmlist"><img src="img/cm/cfu.png" height="180"><br><span class="notranslate">!cm (secret)<br></span><img src="img/corporal.svg" width="15" height="15"> Require LV: None.<br>
+                    <img src="img/info.svg" width="15" height="15"> He is POU clan member. But, did not play with this server so far. He is ghost made by the creator's sorrow.<br>
+                    <img src="img/icon_fu-san.png" width="15" height="15"> "Hello, nice to meet you. How are you today? I am echo of POU Clan members. Perhaps I may have met you before. Is not it?"</div>
+            </li>
+            <li style="color:#FFFF55;"><div class="subj1">Ability list <img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"></div>
+                <div class="commlist-t">Self-healing LV1</div>
+                    <div class="commlist-c">Regenerate 1 health in every 6 seconds.<br>(Require Player LV: 40)</div><br>
+                <div class="commlist-t">Self-healing LV2</div>
+                    <div class="commlist-c">Regenerate 1 health in every 4 seconds.<br>(Require Player LV: 100)</div><br>
+                <div class="commlist-t">Self-healing LV3</div>
+                    <div class="commlist-c">Regenerate 1 health in every 3 seconds.<br>(Require Player LV: 200)</div><br>
+                <div class="commlist-t">Self-healing LV4</div>
+                    <div class="commlist-c">Regenerate 1 health in every 2 seconds.<br>(Require Player LV: 300)</div><br>
+                <div class="commlist-t">Self-healing LV5</div>
+                    <div class="commlist-c">Regenerate 1 health in every 1 seconds.<br>(Require Player LV: 360)</div><br>
+                <div class="commlist-t">Force-field LV1</div>
+                    <div class="commlist-c">Regenerate 1 armor in every 6 seconds.<br>(Require Player LV: 80)</div><br>
+                <div class="commlist-t">Force-field LV2</div>
+                    <div class="commlist-c">Regenerate 1 armor in every 4 seconds.<br>(Require Player LV: 170)</div><br>
+                <div class="commlist-t">Force-field LV3</div>
+                    <div class="commlist-c">Regenerate 1 armor in every 3 seconds.<br>(Require Player LV: 240)</div><br>
+                <div class="commlist-t">Force-field LV4</div>
+                    <div class="commlist-c">Regenerate 1 armor in every 2 seconds.<br>(Require Player LV: 320)</div><br>
+                <div class="commlist-t">Force-field LV5</div>
+                    <div class="commlist-c">Regenerate 1 armor in every 1 seconds.<br>(Require Player LV: 400)</div><br>
+                <div class="commlist-t">Cancel healing restriction LV1</div>
+                    <div class="commlist-c"><span class="notranslate">!revive, !heal, !healer, !armor</span> Can use 1 times when survival restriction wave.<br>(Require Player LV: 60)</div><br>
+                <div class="commlist-t">Cancel healing restriction LV2</div>
+                    <div class="commlist-c"><span class="notranslate">!revive, !heal, !healer, !armor</span> Can use 2 times when survival restriction wave.<br>(Require Player LV: 140)</div><br>
+                <div class="commlist-t">Cancel healing restriction LV3</div>
+                    <div class="commlist-c"><span class="notranslate">!revive, !heal, !healer, !armor</span> Can use 3 times when survival restriction wave.<br>(Require Player LV: 270)</div><br>
+                <div class="commlist-t">Cancel healing restriction LV4</div>
+                    <div class="commlist-c"><span class="notranslate">!revive, !heal, !healer, !armor</span> Can use 4 times when survival restriction wave.<br>(Require Player LV: 380)</div><br>
+                <div class="commlist-t">Cancel healing restriction LV5</div>
+                    <div class="commlist-c"><span class="notranslate">!revive, !heal, !healer, !armor</span> Can use 5 times when survival restriction wave.<br>(Require Player LV: 460)</div><br>
+                <div class="commlist-t">Cancel Ammo restriction LV1</div>
+                    <div class="commlist-c"><span class="notranslate">!ammo</span> Can use 1 times when survival restriction wave.<br>(Require Player LV: 30)</div><br>
+                <div class="commlist-t">Cancel Ammo restriction LV2</div>
+                    <div class="commlist-c"><span class="notranslate">!ammo</span> Can use 2 times when survival restriction wave.<br>(Require Player LV: 260)</div><br>
+                <div class="commlist-t">Cancel Ammo restriction LV3</div>
+                    <div class="commlist-c"><span class="notranslate">!ammo</span> Can use 3 times when survival restriction wave.<br>(Require Player LV: 340)</div><br>
+                <div class="commlist-t">Cancel Ammo restriction LV4</div>
+                    <div class="commlist-c"><span class="notranslate">!ammo</span> Can use 4 times when survival restriction wave.<br>(Require Player LV: 420)</div><br>
+                <div class="commlist-t">Cancel Ammo restriction LV5</div>
+                    <div class="commlist-c"><span class="notranslate">!ammo</span> Can use 5 times when survival restriction wave.<br>(Require Player LV: 500)</div><br>
+            </li>
+            <li><div class="subj1">Survival map notes <img src="img/icon_hv-custsvr.png" width="15" height="15"></div>
+                <div class="commlist-t">Max wave</div>
+                    <div class="commlist-c">casual:10, average:12, skilled:14, insane:16</div><br>
+                <div class="commlist-t">Bonus round chance</div>
+                    <div class="commlist-c">casual:5 - 25%, average:7 - 33%, skilled:9 - 50%, insane:11 - 100%</div><br>
+                <div class="commlist-t">Bloody-Speedy wave</div>
+                    <div class="commlist-c">casual:4 &amp; 8, average:5 &amp; 10, skilled:6 &amp; 12, insane:7 &amp; 14</div><br>
+            </li>
+            <li style="color:#4499FF;"><div class="subj1">Rank-in bonus notes <img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"></div>
+                <div class="commlist-t">Ranking No.1</div>
+                    <div class="commlist-c">Additional max health +100.</div><br>
+                <div class="commlist-t">Ranking No.2</div>
+                    <div class="commlist-c">Additional max health +70.</div><br>
+                <div class="commlist-t">Ranking No.3</div>
+                    <div class="commlist-c">Additional max health +40.</div><br>
+                <div class="commlist-t">Ranking No.4</div>
+                    <div class="commlist-c">Additional max health +20.</div><br>
+                <div class="commlist-t">Ranking No.5</div>
+                    <div class="commlist-c">Additional max health +10.</div><br>
+            </li>
+            <li style="color:#00FFAA;"><u>Weapon change command (- Will schedule abolition. Incoming Workshop.):</u> <img src="img/icon_hv-custsvr.png" width="15" height="15"><br>
+                <div class="cmlist"><img src="img/weapon/poi_default.png"><br><span class="notranslate">!cw pointman default<br>!cw 0<br></span><span style="padding-left: 15px;"></span></div>
+                <div class="cmlist"><img src="img/weapon/poi_striker12.png"><br><span class="notranslate">!cw pointman striker12<br>!cw 1<br></span><span style="padding-left: 15px;"></span></div><br>
+                <div class="cmlist"><img src="img/weapon/ass_default.png"><br><span class="notranslate">!cw assault default<br>!cw 300<br></span><span style="padding-left: 15px;"></span></div>
+                <div class="cmlist"><img src="img/weapon/ass_bluestorm.png"><br><span class="notranslate">!cw assault bluestorm<br>!cw 302<br></span><span style="padding-left: 15px;"></span></div><br>
+                <div class="cmlist"><span class="notranslate">!cw support default<br>!cw 100<br></span><span style="padding-left: 15px;"></span></div>
+                <div class="cmlist"><img src="img/weapon/sup_vf.png"><br><span class="notranslate">!cw support vf<br>!cw 101</span><span style="padding-left: 15px;"></span></div>
+            </li>
+            </ul>
+            <div style="color:#FF66DD;">
+                <ul>
+                    <li><div class="subj1">How to use Inventory <img src="img/icon_hv-custsvr.png" width="15" height="15"><img src="img/icon_no-dlsvr.png" width="15" height="15"></div></li>
+                        <ul>
+                        <li>If you get drop item, can check by this command: <span class="notranslate">!i or !inv</span>. There is ID in item. Ex: 2743.<br><img src="img/update_20160604_001.png"></li>
+                        <li>Write ID as shown in the following command: <span class="notranslate">"!equip 2743" or "!e 2743"</span>.<br><img src="img/update_20160604_002.png"><br>Equip item will affect in next respawn.</li>
+                        <li>Also can check inventory by category: <span class="notranslate">!inv head, !inv body, !inv legs, !inv hand, !inv use</span>.</li>
+                        <li>You can check current equip: <span class="notranslate">!inv equip</span>.</li>
+                        </ul>
+                    <li>Weapon skin &amp; Player model is not drop yet.</li>
+                    
+                </ul>
+            </div>
+            <div style="color:#00FFFF;">
+                <ul>
+                    <li><div class="subj1">Planning update + BugFix (Thank you idea!) </div></li>
+                    <ul>
+                    <li>Random map selector.</li>
+                    <li>Survival mode. (like a DayZ)</li>
+                    <li>Inventory system. (Web UI) Change unique skill, <s>equip</s>. : Complete a part!</li>
+                    <li>Some bug fix. (3)Camera glitch when change player model. <s>(1)Double ended cooldown time. (2)Infinity using skill.</s> : Complete a part!</li>
+                    <li><s>Drop system. Started making, Some items will be able to equip.</s> : Complete a part!</li>
+                    <li><s>Weapon skin system.</s> Planning drop when map end, or buy use points. : Complete a part!</li>
+                    <li><s>Item sell system. (Item will not be displayed when there are too many)</s> : Complete!</li>
+                    </ul>
+                </ul>
+            </div>
+            <div style="color:#00FF00;">
+                <ul>
+                    <li><div class="subj1">Copyright</div></li>
+                    <ul>
+                    <li>Plug and Play, E****man - POU Member</li>
+                    <li>Minecraft (all base Model) - Fighter (http://css.gamebanana.com/skins/110191)</li>
+                    <li>Devil Jin, Fenrir - panf3 (http://css.gamebanana.com/skins/127896)</li>
+                    <li>Lucario - Moltard (http://css.gamebanana.com/skins/143338)</li>
+                    <li>Bugs Bunny - Techknow (http://css.gamebanana.com/skins/133383)</li>
+                    <li>Marvin the Martian - Techknow (http://css.gamebanana.com/skins/133349)</li>
+                    <li>TMNT Pack - Techknow (http://gamebanana.com/skins/132111)</li>
+                    <li>Miku - hhp227 (http://css.gamebanana.com/skins/133189)</li>
+                    <li>Miku - Knifelemon (http://css.gamebanana.com/skins/133704)</li>
+                    <li>Striker 12 - Drop_Dead, Silentassassin12, Vunsunta, BaM SuCks (http://css.gamebanana.com/skins/48261)</li>
+                    <li>Ak74u for Galil - The_Lama (http://css.gamebanana.com/skins/23562)</li>
+                    <li>Glowing Skeleton - (http://www.minecraftskins.com/skin/1319720/glowing-skeleton/)</li>
+                    <li>Icon - (http://game-icons.net/)</li>
+                    </ul>
+                </ul>
+            </div>
+            <ul>
+            <li><div class="subj1">Level up Mod patch notes (JST)</div></li>
+            <ul>
+            <div style="font-size:large">
+                <li>2020/07/25 - <span style="color:#FFFF00;">Changed: !nof method (Only burn the near zombies, but can earn burn XP).</span></li>
+                <li>2019/08/11 - <span style="color:#FF6600;">Added: Random map rotation.</span> <span style="color:#FFFF00;">Changed: Common csv round end music.</span> zombie festa map is sometimes coming.</li>
+                <li>2019/07/09 - Fixed: xpb2 bug in US1 server.</li>
+                <li>2019/04/30 - We replace server now. Fujicoin was cannot withdrawal and deposit issue happened. We fixing now. (Or, will change other crypto coin) Please be patient.</li>
+                <li>2019/02/16 - <span style="color:#FFFF00;">Changed: Closed US3(Reserve),US4 Server.</span> Performance issue and Less frequently used. thank you for enjoy!</li>
+                <li>2018/11/17 - <span style="color:#FF6600;">Added: Server reserved limit. Max 18 between 6 days.</span></li>
+                <li>2018/11/04 - <span style="color:#FF6600;">Added: New 2 cbe maps.</span> <span style="color:#FFFF00;">Changed: Indig anti-spam removed from US3. Item (HAND)Ultima Ratio Hecate II now +1XP when !rrs.</span></li>
+                <li>2018/10/28 - <span style="color:#FF6600;">Added: Server reserve system.</span> You can reserve US3 server from WEB.</li>
+                <li>2018/09/18 - <span style="color:#FF6600;">Added: Indignation anti-spam system.</span> <span style="color:#FFFF00;">Changed: Force-field and clucking rebalance.</span></li>
+                <li>2018/07/29 - <span style="color:#FF6600;">Added: New 2 items, beacon effect.</span> <span style="color:#FFFF00;">Changed: Can use !os with !indig. !sbs is extend time if above LV600. !rrs is limited LV loop time. Change skill-cooldown method. Some skill rebalance.</span></li>
+                <li>2018/07/08 - <span style="color:#FFFF00;">Changed: Summer event update.</span></li>
+                <li>2018/06/25 - <span style="color:#FF6600;">Added: New Buff - Strong cooperation!. New !cm zoey.</span> <span style="color:#00FFFF;">Fixed: Server crash when joined incorrect steamid users.</span></li>
+                <li>2018/06/18 - <span style="color:#FF6600;">Added: New 2 Servers (C-US3, C-US4).</span> Modded-Festa server is enabled farming map.</li>
+                <li>2019/02/16 - <span style="color:#FFFF00;">Changed: Closed US3(Reserve),US4 Server.</span></li>
+                <li>2018/10/28 - <span style="color:#FF6600;">Added: Server reserve system.</span></li>
+                <li>2018/09/18 - <span style="color:#FF6600;">Added: Indignation anti-spam system.</span> <span style="color:#FFFF00;">Changed: Force-field and clucking rebalance.</span></li>
+                <li>2018/07/29 - Added: New 2 items, beacon effect. Changed: Can use !os with !indig. !sbs is extend time if above LV600. !rrs is limited LV loop time. Change skill-cooldown method. Some skill rebalance.</li>
+                <li>2018/07/08 - Changed: Summer event update.</li>
+                <li>2018/06/18 - Added: New 2 Servers (C-US3, C-US4).</li>
+                <li>2018/06/11 - Fixed: Bonus wave cannot get points. Changed: Some item rebalance.</li>
+                <li>2018/06/01 - Changed: All XP gain item affect to map/wave end.</li>
+                <li>2018/05/31 - Added: New 2 items.</li>
+                <li>2018/05/27 - Added: (WEB) Nano cryptocoin deposit.</li>
+                <li>2018/05/13 - Changed: !nightmare and !hell can enable till 3 minutes the start of round. Fixed: !rank and !player also affect Hide LV.</li>
+                <li>2018/05/10 - Added: Hell Mode (!hell). Changed: !nightmare became affect per user. Farming station Locked the enable Nightmare Mode.</li>
+                <li>2018/05/09 - Added: Hide LV system. (!conf hidelv on)</li>
+                <li>2018/05/05 - Changed: Update cbe_apocalyptic_city_v4a map. Remove AnonymousBattleGrounds Server.</li>
+                <li>2018/05/02 - Fixed: XP x2 calculation. (mainly the equip item)</li>
+                <li>2018/04/28 - Added: 6 players support for No-DL server. PVP server kill streak bonus.</li>
+                <li>2018/04/26 - Added: New server - AnonymousBattleGround(PVP). Changed: Disable join, disconnect message.</li>
+                <li>2018/04/22 - Fixed: Network lagging the cbe_hw2_zombie-festa_v5a map.</li>
+                <li>2018/04/19 - Added: New !mu method for cbe_hw2_zombie-festa map.</li>
+                <li>2018/04/14 - Changed: Bloody-speedy wave function (More wave, change fire-rate).</li>
+                <li>2018/03/25 - Added: New 1 map - ccs_zs_hw2_infectedcity_sakura_v1. New 1 character !cm fenrir.</li>
+            </div>
+            <li>2018/03/18 - Added: New 1 item. New 1 skill "!tada".</li>
+            <li>2018/03/10 - Added: New 1 map - csv_highrise. Changed: Item auction method in game. Move speed up when ready in csv maps.</li>
+            <li>2018/02/25 - Added: New 1 item. (Event) Changed: Some item rebalance. (WEB) Item auction method.</li>
+            <li>2018/02/04 - Added: New character "!cm uk" and new character buff.</li>
+            <li>2018/01/20 - Added: New 1 item. Changed: ccs_zs_hw2_infectedcity_v3a map. Fixed: Some item bug.</li>
+            <li>2018/01/12 - Changed: ccs_zs_hw2_infectedcity_v3 map.</li>
+            <li>2018/01/07 - Added: New 1 item. Changed: Indig-helper also get XP.</li>
+            <li>2017/12/24 - Added: (WEB Login) Deposit fujicoin system.</li>
+            <li>2017/12/20 - Added: (WEB Login) Auction set system from Inventory.</li>
+            <li>2017/12/13 - Changed: !nof, !indig will not change bloom.</li>
+            <li>2017/12/03 - Added: Some events update.</li>
+            <li>2017/11/19 - Added: (WEB Login) Auction buy page.</li>
+            <li>2017/11/18 - Added: !indig, !dn, !rg some visual effect to enemy.</li>
+            <li>2017/11/07 - Fixed: Server freeze ccs_hw2_infectedcity map. Added: Saysounds "letskickshell" or "lks".</li>
+            <li>2017/11/05 - Changed: ccs_zs_hw2_infectedcity_v2 map.</li>
+            <li>2017/11/03 - Fixed: Server laggy when !os or unknown map.</li>
+            <li>2017/10/29 - Changed: cbe_apocalyptic_city_v4 map.</li>
+            <li>2017/10/24 - Added: New 1 item.</li>
+            <li>2017/10/14 - Changed: Reduce shot speed for new item.</li>
+            <li>2017/10/08 - Added: New 2 items. Changed: Bonus wave is starting immediately when survival mode.</li>
+            <li>2017/09/19 - Fixed: !rf not working in game.</li>
+            <li>2017/09/17 - Added: Item auction system. (!aucset, !auclist, !aucbuy) Changed: Database server.</li>
+            <li>2017/09/09 - Added: New map ccs_zs_hw2_infectedcity_v1. Ended: Summer maps.</li>
+            <li>2017/08/26 - Added: New skill !nv. Ended: !buy summer item.</li>
+            <li>2017/08/16 - Added: New 1 item. (Summer only!) Changed: cbe_hosvr_summersurf_evening_v1 map's boss can hit damage by !dn.</li>
+            <li>2017/08/15 - Added: New 1 map - cbe_hosvr_summersurf_evening_v1. (Need to clear summersurf map) Fixed: Invincible bug for high LV players.</li>
+            <li>2017/08/11 - Added: !buycm command, character Buff system. Fixed: Mistaken armor damage scripts. Changed: Spawn Bonus timing.</li>
+            <li>2017/07/27 - Fixed: HP and AR cannot above 100 bug.</li>
+            <li>2017/07/20 - Added: Revive 3 maps. (cbe_jds_surv_forest_beta01, cbe_jds_surv_house_v11, cbe_jds_surv_indus_v06) Fixed: Can use !p, !fp when PVP maps. Wrong start time of restriction wave when cbe_surv_28days_later map.</li>
+            <li>2017/07/17 - Added: New 1 summer item (Only drop). New cbe_hosvr_summersurf_v1 map.</li>
+            <li>2017/07/08 - Added: New XP booster item (you can !buy). Add PVP map for No-Download Server.</li>
+            <li>2017/06/25 - Added: New 1 map (cbe_ship). Plugin crash detecter, plugin will auto-restart. Changed: Nightmare mode will not speed-down for below 100LV.</li>
+            <li>2017/06/23 - Fixed: Can use many !deathnote bug.</li>
+            <li>2017/06/18 - Added: Some wave for cbe_surv map. New 1 item.</li>
+            <li>2017/05/29 - Fixed: Missing texture csv_cityblock_v2 map when playing on Legacy server. Changed: Disabled 3rd-view when spawn. (Countermeasures for the zombie horde) Disabled map vote after start the 2 wave.</li>
+            <li>2017/05/28 - Fixed: Grass model not found by new map when playing on Legacy server. Changed: Increased new map coming chance when csv maps. !healer can get XP per players. (Until now it was up to max 2XP)</li>
+            <li>2017/05/24 - Added: New 1 map. (sometimes appear) New 4 items. Changed: !ammo added cooldown. !rrs reload speed more faster.</li>
+            <li>2017/05/20 - Added: New 5 maps. (cbe_maze, cbe_redqueen_b3, cbe_winterstation, cbe_operation_unknown_blackmesa, csv_cityblock_v2) Fixed: !nof, !dn will count up score board "kills". Changed: Force bloom enable for not HDR maps when !nof, !indig.</li>
+            <li>2017/05/03 - Added: Add rarity message when drop item. Fixed: Force nightmare mode bug when playing 1 player.</li>
+            <li>2017/04/25 - Added: New 9 cbe maps, 1 csv map.</li>
+            <li>2017/04/22 - Added: New 1 csv map. Fixed: Cannot use cancel ammo restriction bug. White-out specular cbe_casa_v2, csv_nova_prospekt_beta1_2 maps.</li>
+            <li>2017/04/13 - Added: Web login system! (alpha) You can create account !webc command.</li>
+            <li>2017/04/08 - Added: New 2 maps, 1 item, 2 reforge append. Changed: !rg append is more long time. fire-rate mod method. Some map x2 clear bonus. Some display (!player, etc...)</li>
+            <li>2017/04/02 - Changed: !rrs is can use all class. new mod fire-rate method, affect all weapons.</li>
+            <li>2017/03/26 - Added: New 4 language - !conf lang (cn/kr/th/ru). Changed: !os will not change to yellow monster.</li>
+            <li>2017/03/20 - Added: !conf command (Testing), Everyday login bonus. New survival map music.</li>
+            <li>2017/03/12 - Added: New 5 items. Changed: Some reforge append. System message prefix.</li>
+            <li>2017/03/09 - Added: Bonus when protecting hurt player by zombie.</li>
+            <li>2017/03/05 - Added: New 8 maps (in legacy 6). New TMNT music in sewer map. Changed: !os changed to 3% drop chance. !os changed music.</li>
+            <li>2017/03/04 - Added: !os or !augma command.</li>
+            <li>2017/02/26 - Changed: Turret and Supply box to sync Player-MaxHP (also !healer). Indig-Helper add voice delay. Fixed: Cannot !moff when survival map.</li>
+            <li>2017/02/25 - Changed: Corresponded CURE LIVE Update 2.0. !mu does not increase. !cw command abolition.</li>
+            <li>2017/02/11 - Added: New command !rf. You can change append effect the equip item. Changed: "!sell garbage", "!sell copper", "!sell silver" is not sell strong append of item.</li>
+            <li>2017/01/29 - Changed: A little optimized cbe_apocalyptic_city_v3. Fixed: !indig effect bug.</li>
+            <li>2017/01/21 - Added: !i all, !sendi, !sendp command. Survival map ready system. New 2 character gpap, mccree2. Fixed: Not correct XP count up displaying when connect.</li>
+            <li>2017/01/17 - Added: Bottom left XP counter effect.</li>
+            <li>2017/01/14 - Added: No-Download version mod.</li>
+            <li>2017/01/12 - Fixed: Items did not drop under certain conditions when csv map. Added: cbe_metro_tunnels can now get clear bonus. Reduced the risk of server down.</li>
+            <li>2016/12/27 - Added: Turrets, support box increased health. Nof and indig glow effect. New 14 saysounds.</li>
+            <li>2016/12/21 - Added: Christmas update. New 2 christmas item.</li>
+            <li>2016/12/15 - Added: First wave music. Fixed: Cooldown bug, cbe_hw2_mcgb map fast clear bug. Changed: Cannot respawn when cooldown.</li>
+            <li>2016/12/03 - Added: Healing health until max from support box. New !sell (garbage,copper,silver) command, can sell 6 items at once.</li>
+            <li>2016/11/27 - Added: New 4 items. More sound variation: !indig, !dn, mu2, dta3, turtles death, round start. New inventory offset. (You can pointing at item load start position. Ex: !i head 30) Fixed: Turtles flash light bug. Adjusted some item !sell price.</li>
+            <li>2016/11/22 - Added: New character "!cm mccree". (Require 300LV)</li>
+            <li>2016/11/20 - Added: Item &amp; points trade system.</li>
+            <li>2016/11/15 - Fixed: Map cbe_hw2_mcgb_v1a. Adjusted the Map, Boss HP, Music, Auto-spawn.</li>
+            <li>2016/11/13 - Added: New map cbe_hw2_mcgb_v1.</li>
+            <li>2016/10/29 - Added: New player model "!cm don" "!cm raph" "!cm mike" "!cm leo". New Halloween Event. Changed: ThirdPerson view when spawning.</li>
+            <li>2016/10/31 - Added: Server auto-reboot script.</li>
+            <li>2016/10/09 - Fixed: Player load the forever in particular item state bug.</li>
+            <li>2016/10/08 - Added: New 2 items. New LV-UP sounds. Changed: Player spawn initialize more faster.</li>
+            <li>2016/10/05 - Fixed: Load method of player data was significant mistake. Fixed a bug that of other people inventory is visible.</li>
+            <li>2016/10/02 - Fixed: cbe_apocalyptic_city_v2, cbe_hosvr_zombie-festa_v3, corpse now disappear. Changed: cbe_hosvr_zombie-festa add safe-area, change music method.</li>
+            <li>2016/09/24 - Fixed: Reduce server lag when killing many zombies.</li>
+            <li>2016/09/17 - Added: New skill command "!dn". Available JP/EN voice. Changed: Some equip item is rebalance. (Users feedback)</li>
+            <li>2016/09/10 - Added: New 1 item, some SaySound voice. Revival !buy command. Changed: !nof now burnable the BOSS.</li>
+            <li>2016/09/04 - Added: Many SaySound voice. (Ex: hi, sorry, incoming) List is wrote below command list. New player model "!cm sts" or "!cm sans" (Need 90 LV). Changed: !indig and !rrs was randomized US/JP.</li>
+            <li>2016/08/26 - Added: New map cbe_apocalyptic_city_v1. New Indig-helper and Damage system.</li>
+            <li>2016/07/27 - Changed: Closed !buy command.</li>
+            <li>2016/07/24 - Added: New 5 items. "!i [copper,silver,gold,platinum]" filter command. Fixed: Item drop rate. Changed: Some item rebalance. !buy 5004 need points: 1000 -&gt; 2000.</li>
+            <li>2016/07/19 - Changed: Some bug-fix.</li>
+            <li>2016/07/17 - Added: Skill !indig (!indig en). "!buy 5004" command. !buy 5004 is limited time offer: 1000 points(期間限定).</li>
+            <li>2016/07/03 - Added: Auto-spawn system below LV80. Changed: !mu turret amount rebalance. Some maps decrease XP when zombie kill.</li>
+            <li>2016/06/25 - Added: New support skin Valkyrie Favor "!cw 101".</li>
+            <li>2016/06/18 - Added: New character "!cm gs". Item sell command "!sell (ID)" "!invsell (!is)".</li>
+            <li>2016/06/12 - Added: New 5 items. !inv showequip (!i se) command, you can show your equip for everyone. 20% chance drop item when survival wave end. Drop item when defeat the boss. 
+            Changed: !mu decrease turret amount. Decrease defeat the boss bonus. Some short map drop item rate is 50%. Fixed: Double affect status.</li>
+            <li>2016/06/04 - Added: Item drop system. Changed: Weapon skin command to !cw.</li>
+            <li>2016/05/28 - Added: !tp command.</li>
+            <li>2016/05/21 - Added: Change weapon skin - !equip. (Early Access) Can equip everybody now, will LV restrict or include to drop item. Changed: Some skin restricted.</li>
+            <li>2016/05/07 - Added: New one character - deviljin.</li>
+            <li>2016/05/01 - Added: New one character - marvin. New map cbe_hosvr_zombie-festa_v1. Defeat the boss bonus.</li>
+            <li>2016/04/24 - Added: Cancel restriction ability. Can use some skill when survival restriction wave! Changed: Ability need level. Cannot map vote when restriction wave.</li>
+            <li>2016/04/20 - Fixed: Resulting in a different display from lower left XP window.</li>
+            <li>2016/04/19 - Added: Regenerate health and Armor ability. Changed: Remove LV from lower left XP display window. Optimized low resolution.</li>
+            <li>2016/04/10 - Added: Character sound when map start and taking damage. Changed: Display ranking method. can more quickly display.</li>
+            <li>2016/04/06 - Changed: Level-up data send method.</li>
+            <li>2016/04/04 - Fixed: Not stopped some wave music.</li>
+            <li>2016/04/03 - Added: New 2 music and more melodic when survival.</li>
+            <li>2016/04/02 - Added: Spectator AFK auto-kick. (3 minutes)</li>
+            <li>2016/03/26 - Added: !cm pap.</li>
+            <li>2016/03/19 - Added:!roundripsaber (!rrs) skill.</li>
+            <li>2016/03/13 - Added:Death sounds. !suicide command.</li>
+            <li>2016/03/05 - Added:!revive (!rv). Changed:!sbs, !invi was decreased need points.</li>
+            <li>2016/02/28 - Changed:New Level-up Graph! Few skill cooldown time. More xp kill strong zombie when survival.</li>
+            <li>2016/02/25 - Added:!reduceguard (!rg). Bloody-Speedy wave! Changed:Arrival time of the bonus round. few skill cooldown time.</li>
+            <li>2016/02/23 - Fixed:Health 0 bug when destroyed after use !multiple. Added:!healer can also turret health!</li>
+            <li>2016/02/22 - Added:!multiple. You can deploy additional turret or supply chest!</li>
+            <li>2016/02/20 - Added:4 player models. Changed:Some player model command alias.</li>
+            <li>2016/02/14 - Changed:Modify map change mothod the time of survival map.</li>
+            <li>2016/02/07 - Added:Cooldown ended message. Survival map bonus round. Changed:Survival map clear bonus.</li>
+            <li>2016/01/28 - Added:Wave limit.</li>
+            <li>2016/01/23 - Added:XP bonus when use !healer. new 3 model and level cap. Fixed:Cannot fill !ammo shotgun when survival mode.</li>
+            <li>2016/01/09 - Added:Survival map&amp;music mod. say !health also can use heal. Fixed:steamid auth, double LV name.</li>
+            <li>2016/01/04 - Changed level system coding. (testing now!!) Fixed freeze bug. Delete:!skill.</li>
+            <li>2016/01/03 - Added model. (mc-creeper, mc-skeleton)</li>
+            <li>2016/01/02 - Added !cm. You can model change.</li>
+            <li>2015/12/31 - Added !nof (!nightoffire). Fixed double difficulty set time.</li>
+            <li>2015/12/29 - Changed clear bonus. Added radio sound.</li>
+            <li>2015/12/25 - Added !sbs (!starburststream).</li>
+            <li>2015/12/24 - Added !invi (!invincible).</li>
+            <li>2015/12/23 - Added !ammo.</li>
+            <li>2015/12/21 - Added display motd when after map load. Added !rank.</li>
+            <li>2015/12/21 - Fixed double LV name, infinite LV up intermittently (maybe).</li>
+            <li>2015/11/-- - Release mod.</li>
+            </ul></ul>
+        </div>
+        </div></div>
+                    <div class="bottom"><br>
+                        <div class="nobr"><img src="img/linux_icon.png" height="30px"></div>
+                            <div class="nobr">POU Server there is Linux compatibility.<br>POU Server plugin is develop by Linux environment.</div><br>
+                        <img src="img/email.png"><br>
+                        <div class="nobr">
+                            <ul style="text-align: left;">
+                                <li>E-mail is only receive, we do not reply. However, except in case of emergency.</li>
+                                <li>We not accept any private character and weapon skin from now on.</li>
+                                <li>Request will implement in best effort.</li>
+                            </ul>
+                        </div><br>
+                        Thank you for enjoying!<br>
+                        <br>
+                        BitCoin : 13rYcdRm9vr6Rpfa47AgW5kqX4Mq57oz5K<br>
+                        LiteCoin: LZmHN8khYoAWeooJ8dxmb8F4Xi6FLunov6<br><br><br>
+                    </div>
+                </div>
+            </div>
+        
+        
+        </body>
